@@ -1,0 +1,23 @@
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	body {
+		background-color: black;
+		font-family: 'Open Sans', sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 500;
+	}
+	.app-container {
+		@apply max-w-7xl mx-auto min-h-screen rounded-xl text-text-primary;
+	}
+}
+
+@layer utilities {
+	/* Custom Utilities */
+	/* .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  } */
+}
