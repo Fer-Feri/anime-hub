@@ -13,6 +13,38 @@
 	.app-container {
 		@apply max-w-7xl mx-auto min-h-screen rounded-xl text-text-primary;
 	}
+
+	.header-search {
+		@apply flex-auto flex gap-2 bg-background-dark border border-text-secondary text-sm px-4 py-2 rounded-lg transition-all duration-300 focus-within:border-accent-primary focus-within:ring-2 focus-within:ring-accent-primary/30 focus-within:shadow-lg focus-within:shadow-accent-primary/10;
+	}
+
+	.active-link-content {
+		@apply text-accent-primary font-semibold border-b-4 pb-1 border-accent-primary;
+	}
+
+	.swiper-button-next,
+	.swiper-button-prev {
+		color: #00ff88 !important;
+		background: rgba(0, 0, 0, 0.5);
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	.swiper-button-next:after,
+	.swiper-button-prev:after {
+		font-size: 18px;
+	}
+
+	.swiper-pagination-bullet {
+		background: #ffffff !important;
+		opacity: 0.5;
+	}
+
+	.swiper-pagination-bullet-active {
+		background: #00ff88 !important;
+		opacity: 1;
+	}
 }
 
 @layer utilities {
