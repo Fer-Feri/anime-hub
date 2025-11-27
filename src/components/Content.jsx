@@ -1,38 +1,49 @@
 import { IoMdNotificationsOutline } from 'react-icons/io';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
-import { FaPlay } from 'react-icons/fa';
 
 import kakashiLogo from '../assets/images/kakashi-logo.jpg';
 import narutoSlider from '../assets/images/naruto-slider.jpg';
+import MainHeroSlider from './sliders/MainHeroSlider';
+import AnimeRowSlider from './sliders/AnimeRowSlider';
 
 const Content = () => {
-	const slides = [
+	const heroSlides = [
 		{
 			id: 1,
 			title: 'Naruto',
 			seasons: '2 Seasons',
 			episodes: '700 Episodes',
-			description:
-				'In this new action-comedy, everything about a young man named Saitama screams "AVERAGE," from his lifeless expression, to his bald head, to his unimpressive physique.',
+			description: 'In this action-comedy...',
 			image: narutoSlider,
 			tags: ['STORY', 'ACTORS'],
 		},
 		{
 			id: 2,
-			title: 'Naruto baka',
+			title: 'Naruto Baka',
 			seasons: '2 Seasons',
 			episodes: '700 Episodes',
-			description:
-				'In this new action-comedy, everything about a young man named Saitama screams "AVERAGE," from his lifeless expression, to his bald head, to his unimpressive physique.',
+			description: '...',
 			image: narutoSlider,
 			tags: ['STORY', 'ACTORS'],
 		},
-		// سایر اسلایدها...
+	];
+
+	const topRated = [
+		{ id: 1, title: 'Demon Slayer', img: narutoSlider },
+		{ id: 2, title: 'One Piece', img: narutoSlider },
+		{ id: 3, title: 'Naruto', img: narutoSlider },
+		{ id: 4, title: 'Dragon Ball Z', img: narutoSlider },
+		{ id: 5, title: 'Death Note', img: narutoSlider },
+	];
+
+	const latest = [
+		{ id: 10, title: 'Solo Leveling', img: narutoSlider },
+		{ id: 11, title: 'Jujutsu Kaisen', img: narutoSlider },
+		{ id: 12, title: 'Attack on Titan', img: narutoSlider },
+		{ id: 13, title: 'Chainsaw Man', img: narutoSlider },
 	];
 
 	return (
@@ -59,71 +70,13 @@ const Content = () => {
 				</div>
 			</div>
 
-			{/* slider */}
-			<div className="px-6 flex-shrink-0 overflow-hidden">
-				<Swiper
-					modules={[Navigation, Pagination, Autoplay, EffectFade]}
-					spaceBetween={0}
-					slidesPerView={1}
-					pagination={{ clickable: true }}
-					autoplay={{ delay: 5000, disableOnInteraction: false }}
-					effect="fade"
-					fadeEffect={{ crossFade: true }}
-					loop={true}
-					className="rounded-2xl overflow-hidden w-full">
-					{slides.map((slide) => (
-						<SwiperSlide key={slide.id}>
-							<div className="relative h-[350px] md:h-[450px]">
-								{/* Background Image */}
-								<img
-									src={slide.image}
-									alt={slide.title}
-									className="absolute inset-0 w-full h-full object-cover"
-								/>
+			{/* Main Slider */}
+			<MainHeroSlider slides={heroSlides} />
 
-								{/* Overlay Gradient */}
-								<div className="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent"></div>
-
-								{/* Content */}
-								<div className="relative h-full flex flex-col justify-center p-8 md:p-12 max-w-2xl">
-									<h2 className="mb-4 font-bold text-3xl md:text-4xl">
-										{slide.title}
-									</h2>
-
-									<div className="flex gap-3 text-sm text-text-secondary mb-4">
-										<span>{slide.seasons}</span>
-										<span>|</span>
-										<span>{slide.episodes}</span>
-									</div>
-
-									<div className="flex gap-2 mb-4">
-										{slide.tags.map((tag, index) => (
-											<span
-												key={index}
-												className="px-3 py-1 bg-background-card/50 backdrop-blur-sm border border-border-primary rounded-full text-xs text-text-primary">
-												{tag}
-											</span>
-										))}
-									</div>
-
-									<p className="text-text-secondary text-sm md:text-base mb-6 line-clamp-3">
-										{slide.description}
-									</p>
-
-									<button className="flex items-center gap-2 w-fit px-6 py-3 bg-accent-primary hover:bg-accent-primary/90 text-white rounded-full font-semibold transition-all hover:scale-105">
-										<FaPlay size={14} />
-										<span>Watch Now</span>
-									</button>
-								</div>
-							</div>
-						</SwiperSlide>
-					))}
-				</Swiper>
-			</div>
-
-			{/* animes section - با اسکرول */}
+			{/* Anime Sections */}
 			<div className="flex-1 overflow-y-auto px-6 pb-6">
-				{/* محتوای بقیه صفحه اینجا میاد */}
+				<AnimeRowSlider title="Top Rated Anime" items={topRated} />
+				<AnimeRowSlider title="Latest Anime" items={latest} />
 			</div>
 		</div>
 	);
