@@ -1,27 +1,35 @@
-import SideBar from './components/SideBar';
-import Content from './components/Content';
-import Menu from './components/Menu';
-import Header from './components/Header';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
+import MainLayouts from './layouts/MainLayouts';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
+import Watch from './pages/Watch';
 
 const App = () => {
 	return (
-		<section className="app-container">
-			<div className="flex flex-col min-h-screen w-full my-3 px-2">
-				<Header />
+		<BrowserRouter>
+			<Routes>
+				{/* Layout اصلی با Nested Routes */}
+				<Route path="/" element={<MainLayouts />}>
+					{/* Redirect اصلی به Series */}
+					<Route index element={<Navigate to="/series" replace />} />
 
-				<div className="flex flex-col lg:flex-row flex-1 gap-3 bg-background-dark rounded-lg overflow-hidden">
-					{/* Content - عرض اصلی */}
-					<div className="flex-1 lg:flex-[1_1_60%] overflow-hidden">
-						<Content />
-					</div>
+					{/* صفحات Movies/Series */}
+					<Route path="movies" element={<Home type="movies" />} />
+					<Route path="series" element={<Home type="series" />} />
 
-					{/* Sidebar - عرض ثابت */}
-					<aside className="lg:flex-[0_0_350px] lg:max-w-[400px] overflow-hidden">
-						<SideBar />
-					</aside>
-				</div>
-			</div>
-		</section>
+					{/* صفحه پخش - Dynamic Route */}
+					<Route path="watch/:id" element={<Watch />} />
+
+					{/* صفحات دیگر */}
+					<Route path="profile" element={<Profile />} />
+				</Route>
+
+				{/* 404 - خارج از Layout */}
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+		</BrowserRouter>
 	);
 };
 
